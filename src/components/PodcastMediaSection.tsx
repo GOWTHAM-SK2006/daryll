@@ -40,10 +40,10 @@ export const PodcastMediaSection: React.FC<PodcastMediaSectionProps> = ({ onOpen
         <div
           className="glass-card-accent"
           style={{
-            marginBottom: '60px',
+            marginBottom: '50px',
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '36px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '32px',
             alignItems: 'center'
           }}
         >
@@ -56,7 +56,7 @@ export const PodcastMediaSection: React.FC<PodcastMediaSectionProps> = ({ onOpen
                 border: '1px solid var(--border-gold)',
                 boxShadow: 'var(--shadow-gold)',
                 aspectRatio: '1 / 1',
-                maxHeight: '340px',
+                maxHeight: '300px',
                 margin: '0 auto'
               }}
             >
@@ -70,16 +70,16 @@ export const PodcastMediaSection: React.FC<PodcastMediaSectionProps> = ({ onOpen
 
           {/* Audio Player Controls */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8rem', color: 'var(--accent-gold)', fontWeight: 700, textTransform: 'uppercase', marginBottom: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.78rem', color: 'var(--accent-gold)', fontWeight: 700, textTransform: 'uppercase', marginBottom: '8px' }}>
               <Mic size={14} />
               <span>NOW PLAYING • EPISODE #{currentEpisode.episodeNumber}</span>
             </div>
 
-            <h3 style={{ fontSize: '1.8rem', color: '#FFFFFF', marginBottom: '12px', lineHeight: 1.25 }}>
+            <h3 style={{ fontSize: 'clamp(1.4rem, 3vw, 1.8rem)', color: '#FFFFFF', marginBottom: '10px', lineHeight: 1.25 }}>
               {currentEpisode.title}
             </h3>
 
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '24px' }}>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: 1.55, marginBottom: '20px' }}>
               {currentEpisode.description}
             </p>
 
@@ -89,16 +89,16 @@ export const PodcastMediaSection: React.FC<PodcastMediaSectionProps> = ({ onOpen
                 background: '#090A0E',
                 border: '1px solid var(--border-gold)',
                 borderRadius: 'var(--radius-lg)',
-                padding: '20px 24px',
-                marginBottom: '24px'
+                padding: '16px 18px',
+                marginBottom: '20px'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '14px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '12px' }}>
                 <button
                   onClick={() => togglePlay()}
                   style={{
-                    width: '52px',
-                    height: '52px',
+                    width: '46px',
+                    height: '46px',
                     borderRadius: '50%',
                     background: 'var(--accent-gold)',
                     border: 'none',
@@ -111,11 +111,11 @@ export const PodcastMediaSection: React.FC<PodcastMediaSectionProps> = ({ onOpen
                     flexShrink: 0
                   }}
                 >
-                  {isPlaying ? <Pause size={24} /> : <Play size={24} style={{ marginLeft: '3px' }} />}
+                  {isPlaying ? <Pause size={20} /> : <Play size={20} style={{ marginLeft: '2px' }} />}
                 </button>
 
                 <div style={{ flexGrow: 1 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '6px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', color: 'var(--text-muted)', marginBottom: '4px' }}>
                     <span>{isPlaying ? '04:12' : '00:00'}</span>
                     <span>{currentEpisode.duration}</span>
                   </div>
@@ -130,23 +130,24 @@ export const PodcastMediaSection: React.FC<PodcastMediaSectionProps> = ({ onOpen
                     style={{
                       width: '100%',
                       accentColor: '#D4AF37',
-                      cursor: 'pointer'
+                      cursor: 'pointer',
+                      height: '20px'
                     }}
                   />
                 </div>
               </div>
 
               {/* Streaming Platform Badges */}
-              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', borderTop: '1px solid var(--border-subtle)', paddingTop: '12px' }}>
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', borderTop: '1px solid var(--border-subtle)', paddingTop: '10px' }}>
                 <a
                   href={currentEpisode.spotifyUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="btn btn-secondary btn-sm"
-                  style={{ fontSize: '0.78rem', gap: '6px' }}
+                  style={{ fontSize: '0.76rem', gap: '6px', padding: '6px 12px' }}
                 >
-                  <span>Listen on Spotify</span>
-                  <ExternalLink size={12} />
+                  <span>Spotify</span>
+                  <ExternalLink size={11} />
                 </a>
 
                 <a
@@ -154,10 +155,10 @@ export const PodcastMediaSection: React.FC<PodcastMediaSectionProps> = ({ onOpen
                   target="_blank"
                   rel="noreferrer"
                   className="btn btn-secondary btn-sm"
-                  style={{ fontSize: '0.78rem', gap: '6px' }}
+                  style={{ fontSize: '0.76rem', gap: '6px', padding: '6px 12px' }}
                 >
-                  <span>Apple Podcasts</span>
-                  <ExternalLink size={12} />
+                  <span>Apple</span>
+                  <ExternalLink size={11} />
                 </a>
 
                 <a
@@ -165,10 +166,10 @@ export const PodcastMediaSection: React.FC<PodcastMediaSectionProps> = ({ onOpen
                   target="_blank"
                   rel="noreferrer"
                   className="btn btn-secondary btn-sm"
-                  style={{ fontSize: '0.78rem', gap: '6px' }}
+                  style={{ fontSize: '0.76rem', gap: '6px', padding: '6px 12px' }}
                 >
-                  <span>Watch on YouTube</span>
-                  <ExternalLink size={12} />
+                  <span>YouTube</span>
+                  <ExternalLink size={11} />
                 </a>
               </div>
             </div>
@@ -176,12 +177,12 @@ export const PodcastMediaSection: React.FC<PodcastMediaSectionProps> = ({ onOpen
         </div>
 
         {/* Podcast Episode Queue */}
-        <div style={{ marginBottom: '60px' }}>
-          <h3 style={{ fontSize: '1.4rem', color: '#FFFFFF', marginBottom: '20px' }}>
+        <div style={{ marginBottom: '50px' }}>
+          <h3 style={{ fontSize: '1.3rem', color: '#FFFFFF', marginBottom: '16px' }}>
             Recent Episodes
           </h3>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {PODCAST_EPISODES.map((ep) => {
               const isSelected = currentEpisode.id === ep.id;
               return (
@@ -191,21 +192,22 @@ export const PodcastMediaSection: React.FC<PodcastMediaSectionProps> = ({ onOpen
                     background: isSelected ? 'rgba(212, 175, 55, 0.1)' : 'var(--bg-card)',
                     border: isSelected ? '1px solid var(--border-gold)' : '1px solid var(--border-subtle)',
                     borderRadius: 'var(--radius-md)',
-                    padding: '18px 24px',
+                    padding: '14px 18px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    gap: '20px',
+                    gap: '14px',
                     cursor: 'pointer',
-                    transition: 'all 0.2s ease'
+                    transition: 'all 0.2s ease',
+                    flexWrap: 'wrap'
                   }}
                   onClick={() => togglePlay(ep)}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexGrow: 1 }}>
                     <div
                       style={{
-                        width: '40px',
-                        height: '40px',
+                        width: '36px',
+                        height: '36px',
                         borderRadius: '50%',
                         background: isSelected ? 'var(--accent-gold)' : 'rgba(255,255,255,0.06)',
                         color: isSelected ? '#090A0E' : 'var(--text-muted)',
@@ -215,20 +217,20 @@ export const PodcastMediaSection: React.FC<PodcastMediaSectionProps> = ({ onOpen
                         flexShrink: 0
                       }}
                     >
-                      {isSelected && isPlaying ? <Pause size={18} /> : <Play size={18} style={{ marginLeft: '2px' }} />}
+                      {isSelected && isPlaying ? <Pause size={16} /> : <Play size={16} style={{ marginLeft: '2px' }} />}
                     </div>
 
                     <div>
-                      <div style={{ fontSize: '0.78rem', color: 'var(--accent-gold)', fontWeight: 700 }}>
+                      <div style={{ fontSize: '0.75rem', color: 'var(--accent-gold)', fontWeight: 700 }}>
                         EPISODE #{ep.episodeNumber} • {ep.duration}
                       </div>
-                      <div style={{ fontSize: '1.05rem', color: '#FFFFFF', fontWeight: 700 }}>
+                      <div style={{ fontSize: '0.98rem', color: '#FFFFFF', fontWeight: 700, lineHeight: 1.3 }}>
                         {ep.title}
                       </div>
                     </div>
                   </div>
 
-                  <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
+                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
                     {ep.publishDate}
                   </div>
                 </div>
@@ -239,29 +241,29 @@ export const PodcastMediaSection: React.FC<PodcastMediaSectionProps> = ({ onOpen
 
         {/* Written Tactical Analysis & Articles */}
         <div>
-          <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-            <h3 style={{ fontSize: '1.6rem', color: '#FFFFFF' }}>Tactical Articles & Commentary</h3>
+          <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+            <h3 style={{ fontSize: '1.4rem', color: '#FFFFFF' }}>Tactical Articles & Commentary</h3>
           </div>
 
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '24px'
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+              gap: '20px'
             }}
           >
             {ARTICLES_DATA.map((art) => (
-              <div key={art.id} className="glass-card" style={{ padding: '24px' }}>
-                <div style={{ fontSize: '0.78rem', color: 'var(--accent-gold)', fontWeight: 700, marginBottom: '6px' }}>
+              <div key={art.id} className="glass-card" style={{ padding: '20px' }}>
+                <div style={{ fontSize: '0.75rem', color: 'var(--accent-gold)', fontWeight: 700, marginBottom: '6px' }}>
                   {art.category} • {art.readTime}
                 </div>
-                <h4 style={{ fontSize: '1.15rem', color: '#FFFFFF', marginBottom: '10px', lineHeight: 1.35 }}>
+                <h4 style={{ fontSize: '1.05rem', color: '#FFFFFF', marginBottom: '8px', lineHeight: 1.35 }}>
                   {art.title}
                 </h4>
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: 1.5, marginBottom: '16px' }}>
+                <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.5, marginBottom: '14px' }}>
                   {art.summary}
                 </p>
-                <div style={{ fontSize: '0.8rem', color: 'var(--text-dim)' }}>
+                <div style={{ fontSize: '0.78rem', color: 'var(--text-dim)' }}>
                   Published {art.publishDate}
                 </div>
               </div>

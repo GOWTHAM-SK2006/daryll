@@ -48,10 +48,10 @@ export const CpiSection: React.FC<CpiSectionProps> = ({ onOpenModal }) => {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '36px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '32px',
             alignItems: 'center',
-            marginBottom: '70px'
+            marginBottom: '60px'
           }}
         >
           {/* Dashboard Visual Image */}
@@ -79,14 +79,14 @@ export const CpiSection: React.FC<CpiSectionProps> = ({ onOpenModal }) => {
             <div style={{ fontSize: '0.8rem', color: 'var(--accent-gold)', fontWeight: 700, textTransform: 'uppercase', marginBottom: '8px' }}>
               Built for Modern Cricket
             </div>
-            <h3 style={{ fontSize: '2rem', color: '#FFFFFF', marginBottom: '16px' }}>
+            <h3 style={{ fontSize: 'clamp(1.5rem, 3.5vw, 2rem)', color: '#FFFFFF', marginBottom: '14px' }}>
               Quantifying What Was Once Unmeasurable
             </h3>
-            <p style={{ color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '24px', fontSize: '1rem' }}>
+            <p style={{ color: 'var(--text-muted)', lineHeight: 1.65, marginBottom: '20px', fontSize: '0.98rem' }}>
               Traditional statistics like batting averages only tell a fraction of the story. The <strong>CPI Platform</strong> evaluates biomechanics, decision-making under match pressure, situational game sense, and recovery resilience.
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               {[
                 { title: 'Coach CPI', desc: 'Squad diagnostic tools, player benchmarking, session plans, and development roadmaps.' },
                 { title: 'Player CPI', desc: 'Self-assessment index, technical radar charts, and personalized skill improvement milestones.' },
@@ -98,17 +98,17 @@ export const CpiSection: React.FC<CpiSectionProps> = ({ onOpenModal }) => {
                   style={{
                     display: 'flex',
                     alignItems: 'flex-start',
-                    gap: '14px',
+                    gap: '12px',
                     background: 'rgba(255, 255, 255, 0.02)',
                     border: '1px solid var(--border-subtle)',
                     borderRadius: 'var(--radius-md)',
-                    padding: '16px'
+                    padding: '14px'
                   }}
                 >
                   <div
                     style={{
-                      width: '32px',
-                      height: '32px',
+                      width: '30px',
+                      height: '30px',
                       borderRadius: '8px',
                       background: 'rgba(212, 175, 55, 0.15)',
                       color: 'var(--accent-gold)',
@@ -118,13 +118,13 @@ export const CpiSection: React.FC<CpiSectionProps> = ({ onOpenModal }) => {
                       flexShrink: 0
                     }}
                   >
-                    <CheckCircle size={18} />
+                    <CheckCircle size={16} />
                   </div>
                   <div>
-                    <div style={{ fontWeight: 700, color: '#FFFFFF', fontSize: '0.98rem' }}>
+                    <div style={{ fontWeight: 700, color: '#FFFFFF', fontSize: '0.95rem' }}>
                       {mod.title}
                     </div>
-                    <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '2px' }}>
+                    <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginTop: '2px' }}>
                       {mod.desc}
                     </div>
                   </div>
@@ -132,10 +132,11 @@ export const CpiSection: React.FC<CpiSectionProps> = ({ onOpenModal }) => {
               ))}
             </div>
 
-            <div style={{ marginTop: '32px', display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+            <div style={{ marginTop: '28px' }}>
               <button
                 onClick={() => onOpenModal('cpi-demo')}
                 className="btn btn-primary btn-lg"
+                style={{ width: '100%', justifyContent: 'center' }}
               >
                 <span>Explore CPI Platform</span>
                 <ArrowRight size={18} />
@@ -148,19 +149,18 @@ export const CpiSection: React.FC<CpiSectionProps> = ({ onOpenModal }) => {
         <div
           className="glass-card-accent"
           style={{
-            marginTop: '60px',
-            padding: '40px'
+            marginTop: '40px'
           }}
         >
-          <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 36px auto' }}>
-            <div className="gold-badge" style={{ marginBottom: '12px' }}>
+          <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 30px auto' }}>
+            <div className="gold-badge" style={{ marginBottom: '10px' }}>
               <Sliders size={14} color="var(--accent-gold)" />
               <span>Interactive Simulator</span>
             </div>
-            <h3 style={{ fontSize: '1.8rem', color: '#FFFFFF' }}>
+            <h3 style={{ fontSize: 'clamp(1.4rem, 3.2vw, 1.8rem)', color: '#FFFFFF' }}>
               Test the CPI Diagnostic Simulator
             </h3>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', marginTop: '6px' }}>
               Adjust the 5 core performance parameters below to see how the Cullinan Performance Index calculates player readiness and generates real-time diagnostic ratings.
             </p>
           </div>
@@ -168,13 +168,13 @@ export const CpiSection: React.FC<CpiSectionProps> = ({ onOpenModal }) => {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '40px',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '32px',
               alignItems: 'center'
             }}
           >
             {/* Sliders Column */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
               {[
                 { label: 'Stance & Weight Balance', val: balance, set: setBalance },
                 { label: 'Decision Timing Under Pressure', val: decision, set: setDecision },
@@ -183,7 +183,7 @@ export const CpiSection: React.FC<CpiSectionProps> = ({ onOpenModal }) => {
                 { label: 'Pace Bowling & Short-Ball Defense', val: pacePlay, set: setPacePlay }
               ].map((slider, idx) => (
                 <div key={idx}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.9rem', color: '#E5E7EB', fontWeight: 600, marginBottom: '6px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.86rem', color: '#E5E7EB', fontWeight: 600, marginBottom: '6px' }}>
                     <span>{slider.label}</span>
                     <span style={{ color: 'var(--accent-gold)', fontWeight: 800 }}>{slider.val} / 100</span>
                   </div>
@@ -196,7 +196,8 @@ export const CpiSection: React.FC<CpiSectionProps> = ({ onOpenModal }) => {
                     style={{
                       width: '100%',
                       accentColor: '#D4AF37',
-                      cursor: 'pointer'
+                      cursor: 'pointer',
+                      height: '24px'
                     }}
                   />
                 </div>
@@ -208,25 +209,25 @@ export const CpiSection: React.FC<CpiSectionProps> = ({ onOpenModal }) => {
               style={{
                 background: '#090A0E',
                 border: '1px solid var(--border-gold)',
-                borderRadius: 'var(--radius-xl)',
-                padding: '36px',
+                borderRadius: 'var(--radius-lg)',
+                padding: '28px 20px',
                 textAlign: 'center',
                 boxShadow: '0 10px 30px rgba(0,0,0,0.6)',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '16px'
+                gap: '14px'
               }}
             >
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700 }}>
+              <div style={{ fontSize: '0.76rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700 }}>
                 CALCULATED CPI INDEX SCORE
               </div>
 
               <div
                 style={{
                   fontFamily: 'var(--font-heading)',
-                  fontSize: '4.5rem',
+                  fontSize: 'clamp(3.5rem, 8vw, 4.5rem)',
                   fontWeight: 900,
                   color: rating.color,
                   lineHeight: 1,
@@ -234,15 +235,15 @@ export const CpiSection: React.FC<CpiSectionProps> = ({ onOpenModal }) => {
                 }}
               >
                 {cpiScore}
-                <span style={{ fontSize: '1.8rem', color: 'var(--text-muted)', fontWeight: 600 }}>/100</span>
+                <span style={{ fontSize: '1.6rem', color: 'var(--text-muted)', fontWeight: 600 }}>/100</span>
               </div>
 
               <div
                 style={{
-                  fontSize: '0.95rem',
+                  fontSize: '0.88rem',
                   fontWeight: 800,
                   color: rating.color,
-                  padding: '6px 16px',
+                  padding: '5px 14px',
                   borderRadius: '20px',
                   background: 'rgba(255,255,255,0.05)',
                   border: `1px solid ${rating.color}`
@@ -251,14 +252,14 @@ export const CpiSection: React.FC<CpiSectionProps> = ({ onOpenModal }) => {
                 {rating.label}
               </div>
 
-              <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: 1.5, marginTop: '8px' }}>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.5, marginTop: '4px' }}>
                 {rating.desc}
               </p>
 
               <button
                 onClick={() => onOpenModal('cpi-demo', { initialScore: cpiScore })}
                 className="btn btn-outline-gold btn-sm"
-                style={{ marginTop: '12px', width: '100%' }}
+                style={{ marginTop: '8px', width: '100%', justifyContent: 'center' }}
               >
                 <Zap size={16} />
                 <span>Request Custom Squad CPI Audit</span>

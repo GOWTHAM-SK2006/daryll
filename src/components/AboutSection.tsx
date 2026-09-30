@@ -46,14 +46,14 @@ export const AboutSection: React.FC = () => {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '48px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '36px',
             alignItems: 'center',
-            marginBottom: '70px'
+            marginBottom: '60px'
           }}
         >
           {/* Left Visual Column */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', position: 'relative' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', position: 'relative' }}>
             <div
               style={{
                 borderRadius: 'var(--radius-xl)',
@@ -79,16 +79,16 @@ export const AboutSection: React.FC = () => {
               <div
                 style={{
                   position: 'absolute',
-                  bottom: '20px',
-                  left: '20px',
-                  right: '20px',
+                  bottom: '16px',
+                  left: '16px',
+                  right: '16px',
                   color: '#FFFFFF'
                 }}
               >
-                <div style={{ fontSize: '0.8rem', color: 'var(--accent-gold)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                <div style={{ fontSize: '0.78rem', color: 'var(--accent-gold)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                   Authentic International Profile
                 </div>
-                <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.3rem', fontWeight: 800 }}>
+                <div style={{ fontFamily: 'var(--font-heading)', fontSize: '1.25rem', fontWeight: 800 }}>
                   Daryll Cullinan • Former SA Legend
                 </div>
               </div>
@@ -113,20 +113,27 @@ export const AboutSection: React.FC = () => {
 
           {/* Right Text Column */}
           <div>
-            <h3 style={{ fontSize: '1.8rem', color: '#FFFFFF', marginBottom: '20px' }}>
+            <h3 style={{ fontSize: 'clamp(1.5rem, 3.5vw, 1.8rem)', color: '#FFFFFF', marginBottom: '16px' }}>
               About Daryll Cullinan
             </h3>
 
-            <p style={{ color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '16px', fontSize: '1.02rem' }}>
-              Daryll Cullinan is widely regarded as one of South Africa’s finest Test batsmen. Renowned for his immaculate footwork, classical strokeplay, and deep understanding of the game, Daryll represented South Africa in 70 Test matches and 138 ODIs over a decorated international career spanning nearly a decade.
+            <p style={{ color: 'var(--text-muted)', lineHeight: 1.65, marginBottom: '14px', fontSize: '0.98rem' }}>
+              Daryll Cullinan is widely regarded as one of South Africa’s finest Test batsmen. Renowned for his immaculate footwork, classical strokeplay, and deep understanding of the game, Daryll represented South Africa in 70 Test matches and 138 ODIs over a decorated international career.
             </p>
 
-            <p style={{ color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '24px', fontSize: '1.02rem' }}>
+            <p style={{ color: 'var(--text-muted)', lineHeight: 1.65, marginBottom: '20px', fontSize: '0.98rem' }}>
               Following his playing career, Daryll transitioned into one of the most respected high-performance coaches and media analysts in global cricket. Today, he combines decades of top-tier experience with data-driven technology through the <strong>Cullinan Performance Index (CPI)</strong> and the <strong>Mighty Cricket Network</strong>.
             </p>
 
             {/* Checklist Pillars */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px', marginTop: '28px' }}>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+                gap: '12px',
+                marginTop: '20px'
+              }}
+            >
               {[
                 'International Playing Career',
                 'Elite Player Development',
@@ -135,8 +142,8 @@ export const AboutSection: React.FC = () => {
                 'CPI Performance System',
                 'Mighty Cricket Network'
               ].map((item, idx) => (
-                <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.9rem', color: '#E5E7EB' }}>
-                  <CheckCircle size={16} color="var(--accent-gold)" />
+                <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.86rem', color: '#E5E7EB' }}>
+                  <CheckCircle size={15} color="var(--accent-gold)" style={{ flexShrink: 0 }} />
                   <span>{item}</span>
                 </div>
               ))}
@@ -145,13 +152,13 @@ export const AboutSection: React.FC = () => {
         </div>
 
         {/* Milestone Timeline Tabs */}
-        <div style={{ marginTop: '50px' }}>
-          <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-            <h3 style={{ fontSize: '1.6rem', color: '#FFFFFF' }}>Career Journey & Achievements</h3>
+        <div style={{ marginTop: '40px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+            <h3 style={{ fontSize: 'clamp(1.3rem, 3vw, 1.6rem)', color: '#FFFFFF' }}>Career Journey & Achievements</h3>
           </div>
 
-          {/* Tabs */}
-          <div className="tabs-container" style={{ justifyContent: 'center' }}>
+          {/* Touch Scrollable Tabs */}
+          <div className="tabs-container" style={{ justifyContent: 'flex-start', paddingBottom: '10px' }}>
             <button
               className={`tab-btn ${activeTab === 'playing' ? 'active' : ''}`}
               onClick={() => setActiveTab('playing')}
@@ -182,8 +189,8 @@ export const AboutSection: React.FC = () => {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '24px',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+              gap: '20px',
               animation: 'fadeIn 0.3s ease'
             }}
           >
@@ -195,14 +202,14 @@ export const AboutSection: React.FC = () => {
                   borderLeft: '4px solid var(--accent-gold)'
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', color: 'var(--accent-gold)', fontWeight: 700, marginBottom: '8px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.82rem', color: 'var(--accent-gold)', fontWeight: 700, marginBottom: '6px' }}>
                   <Calendar size={14} />
                   <span>{item.year}</span>
                 </div>
-                <h4 style={{ fontSize: '1.2rem', color: '#FFFFFF', marginBottom: '10px' }}>
+                <h4 style={{ fontSize: '1.1rem', color: '#FFFFFF', marginBottom: '8px' }}>
                   {item.title}
                 </h4>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: 1.55 }}>
                   {item.desc}
                 </p>
               </div>

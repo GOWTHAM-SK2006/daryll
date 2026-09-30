@@ -14,8 +14,8 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenModal }) => {
       style={{
         position: 'relative',
         minHeight: '100vh',
-        paddingTop: '130px',
-        paddingBottom: '80px',
+        paddingTop: 'clamp(96px, 12vh, 130px)',
+        paddingBottom: '60px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -37,25 +37,26 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenModal }) => {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '48px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '36px',
             alignItems: 'center'
           }}
+          className="hero-grid"
         >
           {/* Left Column: Headline & Value Proposition */}
           <div>
-            <div className="gold-badge" style={{ marginBottom: '24px' }}>
+            <div className="gold-badge" style={{ marginBottom: '20px' }}>
               <Trophy size={14} color="var(--accent-gold)" />
-              <span>International Cricket Legend & Global Coach</span>
+              <span>International Cricket Legend & Coach</span>
             </div>
 
             <h1
               style={{
-                fontSize: 'clamp(2.5rem, 5vw, 4.2rem)',
+                fontSize: 'clamp(2.2rem, 5vw, 4.2rem)',
                 fontWeight: 900,
-                lineHeight: 1.08,
+                lineHeight: 1.1,
                 letterSpacing: '-0.03em',
-                marginBottom: '20px'
+                marginBottom: '18px'
               }}
             >
               Cricket. Coaching. <br />
@@ -64,10 +65,10 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenModal }) => {
 
             <p
               style={{
-                fontSize: '1.2rem',
+                fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
                 lineHeight: 1.6,
                 color: 'var(--text-muted)',
-                marginBottom: '36px',
+                marginBottom: '32px',
                 maxWidth: '620px'
               }}
             >
@@ -76,17 +77,18 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenModal }) => {
 
             {/* CTAs */}
             <div
+              className="hero-cta-wrapper"
               style={{
                 display: 'flex',
                 flexWrap: 'wrap',
-                gap: '16px',
+                gap: '14px',
                 alignItems: 'center',
-                marginBottom: '40px'
+                marginBottom: '36px'
               }}
             >
               <button
                 onClick={() => onNavigate('cpi')}
-                className="btn btn-primary btn-lg"
+                className="btn btn-primary btn-lg hero-btn"
               >
                 <span>Explore My Work</span>
                 <ArrowRight size={18} />
@@ -94,7 +96,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenModal }) => {
 
               <button
                 onClick={() => onNavigate('mighty-network')}
-                className="btn btn-secondary btn-lg"
+                className="btn btn-secondary btn-lg hero-btn"
               >
                 <Sparkles size={18} color="var(--accent-gold)" />
                 <span>Join the Mighty Cricket Network</span>
@@ -111,11 +113,11 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenModal }) => {
                 borderTop: '1px solid var(--border-subtle)'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.88rem', color: 'var(--text-muted)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.86rem', color: 'var(--text-muted)' }}>
                 <ShieldCheck size={16} color="var(--accent-gold)" />
                 <span>70 Test Matches for South Africa</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.88rem', color: 'var(--text-muted)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.86rem', color: 'var(--text-muted)' }}>
                 <Award size={16} color="var(--accent-gold)" />
                 <span>Creator of CPI & Mighty Network</span>
               </div>
@@ -129,16 +131,16 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenModal }) => {
               style={{
                 position: 'relative',
                 width: '100%',
-                maxWidth: '480px',
+                maxWidth: '460px',
                 borderRadius: 'var(--radius-xl)',
-                padding: '4px',
+                padding: '3px',
                 background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.4) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(212, 175, 55, 0.2) 100%)',
                 boxShadow: '0 20px 60px rgba(0,0,0,0.7)'
               }}
             >
               <div
                 style={{
-                  borderRadius: 'calc(var(--radius-xl) - 4px)',
+                  borderRadius: 'calc(var(--radius-xl) - 3px)',
                   overflow: 'hidden',
                   position: 'relative',
                   background: '#12141D',
@@ -173,25 +175,25 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenModal }) => {
                 <div
                   style={{
                     position: 'absolute',
-                    bottom: '24px',
-                    left: '24px',
-                    right: '24px',
-                    background: 'rgba(18, 20, 29, 0.9)',
+                    bottom: '16px',
+                    left: '16px',
+                    right: '16px',
+                    background: 'rgba(18, 20, 29, 0.92)',
                     backdropFilter: 'blur(16px)',
                     border: '1px solid var(--border-gold)',
                     borderRadius: 'var(--radius-md)',
-                    padding: '14px 18px',
+                    padding: '12px 14px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    gap: '12px'
+                    gap: '10px'
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <div
                       style={{
-                        width: '44px',
-                        height: '44px',
+                        width: '40px',
+                        height: '40px',
                         borderRadius: '50%',
                         overflow: 'hidden',
                         border: '2px solid var(--accent-gold)',
@@ -205,11 +207,11 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenModal }) => {
                       />
                     </div>
                     <div>
-                      <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.05rem', color: '#FFFFFF' }}>
+                      <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '0.98rem', color: '#FFFFFF', lineHeight: 1.2 }}>
                         Daryll Cullinan
                       </div>
-                      <div style={{ fontSize: '0.78rem', color: 'var(--accent-gold-light)' }}>
-                        International High Score: 275*
+                      <div style={{ fontSize: '0.75rem', color: 'var(--accent-gold-light)' }}>
+                        Test High Score: 275*
                       </div>
                     </div>
                   </div>
@@ -217,8 +219,8 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenModal }) => {
                   <button
                     onClick={() => onOpenModal('cpi-demo')}
                     style={{
-                      width: '40px',
-                      height: '40px',
+                      width: '36px',
+                      height: '36px',
                       borderRadius: '50%',
                       background: 'var(--accent-gold)',
                       border: 'none',
@@ -227,11 +229,12 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenModal }) => {
                       alignItems: 'center',
                       justifyContent: 'center',
                       cursor: 'pointer',
-                      boxShadow: '0 4px 12px rgba(212, 175, 55, 0.4)'
+                      boxShadow: '0 4px 12px rgba(212, 175, 55, 0.4)',
+                      flexShrink: 0
                     }}
                     title="Watch Introduction"
                   >
-                    <PlayCircle size={20} />
+                    <PlayCircle size={18} />
                   </button>
                 </div>
               </div>
@@ -239,33 +242,34 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenModal }) => {
           </div>
         </div>
 
-        {/* Stats Bar */}
+        {/* Responsive Stats Bar */}
         <div
+          className="hero-stats-bar"
           style={{
-            marginTop: '80px',
+            marginTop: '60px',
             background: 'var(--bg-card)',
             border: '1px solid var(--border-gold)',
             borderRadius: 'var(--radius-xl)',
-            padding: '28px 36px',
+            padding: '24px 28px',
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
-            gap: '24px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
+            gap: '20px',
             boxShadow: '0 10px 40px rgba(0, 0, 0, 0.4)'
           }}
         >
           {HERO_STATS.map((stat, idx) => (
             <div
               key={idx}
+              className="stat-box"
               style={{
-                borderRight: idx < HERO_STATS.length - 1 ? '1px solid var(--border-subtle)' : 'none',
-                paddingRight: '16px',
-                textAlign: 'center'
+                textAlign: 'center',
+                padding: '6px 8px'
               }}
             >
               <div
                 style={{
                   fontFamily: 'var(--font-heading)',
-                  fontSize: '2.2rem',
+                  fontSize: 'clamp(1.8rem, 4vw, 2.2rem)',
                   fontWeight: 800,
                   color: 'var(--accent-gold-light)',
                   lineHeight: 1
@@ -275,7 +279,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenModal }) => {
               </div>
               <div
                 style={{
-                  fontSize: '0.8rem',
+                  fontSize: '0.75rem',
                   fontWeight: 600,
                   color: 'var(--text-muted)',
                   marginTop: '6px',
@@ -289,6 +293,26 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenModal }) => {
           ))}
         </div>
       </div>
+
+      {/* Mobile Responsive CSS Rules */}
+      <style>{`
+        @media (max-width: 640px) {
+          .hero-cta-wrapper {
+            flex-direction: column !important;
+            width: 100% !important;
+          }
+          .hero-btn {
+            width: 100% !important;
+            justify-content: center !important;
+          }
+          .hero-stats-bar {
+            grid-template-columns: repeat(2, 1fr) !important;
+            padding: 18px 14px !important;
+            gap: 16px !important;
+            border-radius: var(--radius-lg) !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };
