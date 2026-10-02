@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronRight, Activity, Sparkles } from 'lucide-react';
+import { Menu, X, ChevronRight, Activity } from 'lucide-react';
 import { NavigationItem } from '../types';
 
 interface NavbarProps {
@@ -37,7 +37,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate, onOpe
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll when navigation drawer is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -83,7 +83,30 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate, onOpe
           }}
           className="navbar-wrapper"
         >
-          {/* BRAND LOGO - Left Anchored */}
+          {/* HAMBURGER MENU ICON (☰) - LEFT SIDE */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            style={{
+              background: 'rgba(255, 255, 255, 0.05)',
+              border: '1px solid var(--border-subtle)',
+              color: '#FFFFFF',
+              width: '44px',
+              height: '44px',
+              borderRadius: '10px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              flexShrink: 0,
+              transition: 'all 0.2s ease',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
+            }}
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          >
+            {mobileMenuOpen ? <X size={22} color="var(--accent-gold-light)" /> : <Menu size={22} />}
+          </button>
+
+          {/* DARYLL CULLINAN BRANDING - RIGHT SIDE */}
           <div
             onClick={() => handleNavClick('home')}
             style={{
@@ -143,48 +166,173 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate, onOpe
               </span>
             </div>
           </div>
+        </div>
+      </header>
 
-          {/* DESKTOP NAVIGATION LINKS */}
-          <nav
-            className="desktop-nav-menu"
+      {/* Responsive Breakpoint Padding Fix */}
+      <style>{`
+        @media (max-width: 768px) {
+          .navbar-wrapper {
+            padding: 0 16px !important;
+          }
+        }
+      `}</style>
+
+      {/* DIMMED BACKDROP OVERLAY (Outside Click Closes Drawer) */}
+      <div
+        onClick={() => setMobileMenuOpen(false)}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100vw',
+          height: '100dvh',
+          background: 'rgba(5, 6, 9, 0.65)',
+          backdropFilter: 'blur(4px)',
+          WebkitBackdropFilter: 'blur(4px)',
+          zIndex: 99998,
+          opacity: mobileMenuOpen ? 1 : 0,
+          pointerEvents: mobileMenuOpen ? 'auto' : 'none',
+          transition: 'opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+        }}
+      />
+
+      {/* LEFT SLIDING NAVIGATION DRAWER (~50% Viewport Width) */}
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          bottom: 0,
+          width: '50vw',
+          minWidth: '280px',
+          maxWidth: '520px',
+          height: '100dvh',
+          background: '#090A0E',
+          borderRight: '1px solid var(--border-gold)',
+          boxShadow: '10px 0 40px rgba(0,0,0,0.7)',
+          zIndex: 99999,
+          display: 'flex',
+          flexDirection: 'column',
+          transform: mobileMenuOpen ? 'translateX(0)' : 'translateX(-100%)',
+          transition: 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+          pointerEvents: mobileMenuOpen ? 'auto' : 'none',
+          overflow: 'hidden'
+        }}
+      >
+        {/* Top Header Bar inside Drawer */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            height: '72px',
+            padding: '0 20px',
+            borderBottom: '1px solid var(--border-subtle)',
+            background: '#0C0E15',
+            flexShrink: 0
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div
+              style={{
+                width: '34px',
+                height: '34px',
+                borderRadius: '8px',
+                background: 'linear-gradient(135deg, #F5BA4E 0%, #D4AF37 50%, #9A6A15 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontWeight: 900,
+                fontSize: '1rem',
+                color: '#090A0E'
+              }}
+            >
+              DC
+            </div>
+            <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.05rem', fontWeight: 800, color: '#FFFFFF', letterSpacing: '0.03em' }}>
+              MENU
+            </span>
+          </div>
+
+          <button
+            onClick={() => setMobileMenuOpen(false)}
             style={{
+              width: '38px',
+              height: '38px',
+              borderRadius: '50%',
+              background: 'rgba(212, 175, 55, 0.15)',
+              border: '1px solid var(--border-gold)',
+              color: '#FFFFFF',
+              display: 'flex',
               alignItems: 'center',
-              gap: '16px',
-              flexShrink: 1,
-              justifyContent: 'center'
+              justifyContent: 'center',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease'
             }}
+            aria-label="Close menu"
           >
-            {NAV_ITEMS.map((item) => {
-              const isActive = activeSection === item.id;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.id)}
-                  className={`nav-link-btn ${isActive ? 'active' : ''}`}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    color: isActive ? '#FFFFFF' : '#9CA3AF',
-                    fontSize: '0.85rem',
-                    fontWeight: isActive ? 700 : 500,
-                    cursor: 'pointer',
-                    padding: '6px 4px',
-                    position: 'relative',
-                    transition: 'all 0.2s ease',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '4px',
-                    whiteSpace: 'nowrap'
-                  }}
-                >
+            <X size={20} color="var(--accent-gold-light)" />
+          </button>
+        </div>
+
+        {/* Scrollable Navigation Items */}
+        <div
+          style={{
+            flex: 1,
+            overflowY: 'auto',
+            padding: '20px 16px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '10px',
+            WebkitOverflowScrolling: 'touch'
+          }}
+        >
+          {NAV_ITEMS.map((item) => {
+            const isActive = activeSection === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item.id)}
+                style={{
+                  background: isActive ? 'rgba(212, 175, 55, 0.15)' : 'rgba(255, 255, 255, 0.03)',
+                  border: isActive ? '1px solid var(--accent-gold)' : '1px solid rgba(255, 255, 255, 0.06)',
+                  color: isActive ? '#FFFFFF' : '#D1D5DB',
+                  padding: '14px 18px',
+                  borderRadius: '12px',
+                  fontSize: '0.95rem',
+                  fontWeight: 700,
+                  textAlign: 'left',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  boxShadow: isActive ? '0 4px 20px rgba(212, 175, 55, 0.15)' : 'none'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span
+                    style={{
+                      width: '7px',
+                      height: '7px',
+                      borderRadius: '50%',
+                      background: isActive ? 'var(--accent-gold)' : 'rgba(255,255,255,0.2)'
+                    }}
+                  />
                   <span>{item.label}</span>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   {item.badge && (
                     <span
                       style={{
-                        fontSize: '0.58rem',
-                        padding: '1px 5px',
-                        borderRadius: '4px',
-                        background: item.badge === 'PRO' ? 'rgba(212, 175, 55, 0.2)' : 'rgba(59, 130, 246, 0.2)',
+                        fontSize: '0.62rem',
+                        padding: '2px 7px',
+                        borderRadius: '5px',
+                        background: item.badge === 'PRO' ? 'rgba(212, 175, 55, 0.25)' : 'rgba(59, 130, 246, 0.25)',
                         color: item.badge === 'PRO' ? 'var(--accent-gold-light)' : '#93C5FD',
                         border: item.badge === 'PRO' ? '1px solid var(--border-gold)' : '1px solid rgba(59, 130, 246, 0.4)',
                         fontWeight: 700
@@ -193,314 +341,47 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onNavigate, onOpe
                       {item.badge}
                     </span>
                   )}
-                  {isActive && (
-                    <span
-                      style={{
-                        position: 'absolute',
-                        bottom: '-4px',
-                        left: '0',
-                        right: '0',
-                        height: '2px',
-                        background: 'linear-gradient(90deg, #D4AF37 0%, #F59E0B 100%)',
-                        borderRadius: '2px',
-                        boxShadow: '0 0 8px rgba(212, 175, 55, 0.6)'
-                      }}
-                    />
-                  )}
-                </button>
-              );
-            })}
-          </nav>
-
-          {/* QUICK CTA ACTIONS (DESKTOP) */}
-          <div
-            className="desktop-cta-actions"
-            style={{
-              alignItems: 'center',
-              gap: '10px',
-              flexShrink: 0
-            }}
-          >
-            <button
-              onClick={() => onOpenModal('cpi-demo')}
-              className="btn btn-outline-gold btn-sm"
-              style={{ fontSize: '0.8rem', padding: '8px 14px', gap: '6px' }}
-            >
-              <Activity size={14} />
-              <span>CPI Platform</span>
-            </button>
-
-            <button
-              onClick={() => handleNavClick('mighty-network')}
-              className="btn btn-primary btn-sm"
-              style={{ fontSize: '0.8rem', padding: '8px 16px', gap: '6px' }}
-            >
-              <span>Join Network</span>
-              <ChevronRight size={14} />
-            </button>
-          </div>
-
-          {/* MOBILE HAMBURGER TOGGLE BUTTON */}
-          <button
-            className="mobile-hamburger-btn"
-            onClick={() => setMobileMenuOpen(true)}
-            style={{
-              background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid var(--border-subtle)',
-              color: '#FFFFFF',
-              width: '42px',
-              height: '42px',
-              borderRadius: '10px',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              flexShrink: 0
-            }}
-            aria-label="Open menu"
-          >
-            <Menu size={22} />
-          </button>
+                  <ChevronRight size={16} color={isActive ? 'var(--accent-gold)' : '#6B7280'} />
+                </div>
+              </button>
+            );
+          })}
         </div>
-      </header>
 
-      {/* Breakpoint Styles */}
-      <style>{`
-        .navbar-wrapper {
-          padding: 0 32px;
-        }
-
-        .nav-link-btn:hover {
-          color: #FFFFFF !important;
-          text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-        }
-
-        .desktop-nav-menu {
-          display: none !important;
-        }
-        .desktop-cta-actions {
-          display: none !important;
-        }
-        .mobile-hamburger-btn {
-          display: flex !important;
-        }
-
-        @media (min-width: 1260px) {
-          .desktop-nav-menu {
-            display: flex !important;
-          }
-          .desktop-cta-actions {
-            display: flex !important;
-          }
-          .mobile-hamburger-btn {
-            display: none !important;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .navbar-wrapper {
-            padding: 0 16px !important;
-          }
-        }
-      `}</style>
-
-      {/* 100% FULL-SCREEN MOBILE OVERLAY MENU DRAWER */}
-      {mobileMenuOpen && (
+        {/* Sticky Drawer Footer Actions */}
         <div
           style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            width: '100vw',
-            height: '100dvh',
-            background: '#090A0E',
-            zIndex: 99999,
+            padding: '16px',
+            borderTop: '1px solid var(--border-subtle)',
+            background: '#0D0F17',
             display: 'flex',
             flexDirection: 'column',
-            overflow: 'hidden',
-            animation: 'mobileDrawerSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1)'
+            gap: '10px',
+            flexShrink: 0
           }}
         >
-          {/* Top Bar inside Overlay */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              height: '72px',
-              padding: '0 20px',
-              borderBottom: '1px solid var(--border-gold)',
-              background: '#0C0E15',
-              flexShrink: 0
+          <button
+            onClick={() => {
+              onOpenModal('cpi-demo');
+              setMobileMenuOpen(false);
             }}
+            className="btn btn-outline-gold btn-sm"
+            style={{ width: '100%', justifyContent: 'center' }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <div
-                style={{
-                  width: '36px',
-                  height: '36px',
-                  borderRadius: '8px',
-                  background: 'linear-gradient(135deg, #D4AF37 0%, #A17E1A 100%)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontWeight: 900,
-                  fontSize: '1.1rem',
-                  color: '#090A0E'
-                }}
-              >
-                DC
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.05rem', fontWeight: 800, color: '#FFFFFF' }}>
-                  DARYLL CULLINAN
-                </span>
-                <span style={{ fontSize: '0.62rem', color: 'var(--accent-gold)', textTransform: 'uppercase', fontWeight: 700 }}>
-                  Cricket Legend & Coach
-                </span>
-              </div>
-            </div>
+            <Activity size={16} />
+            <span>Explore CPI Platform</span>
+          </button>
 
-            {/* Close Button */}
-            <button
-              onClick={() => setMobileMenuOpen(false)}
-              style={{
-                width: '42px',
-                height: '42px',
-                borderRadius: '50%',
-                background: 'rgba(212, 175, 55, 0.15)',
-                border: '1px solid var(--accent-gold)',
-                color: '#FFFFFF',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer'
-              }}
-              aria-label="Close menu"
-            >
-              <X size={22} color="var(--accent-gold-light)" />
-            </button>
-          </div>
-
-          {/* Scrollable Navigation List */}
-          <div
-            style={{
-              flex: 1,
-              overflowY: 'auto',
-              padding: '20px 16px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '10px',
-              WebkitOverflowScrolling: 'touch'
-            }}
+          <button
+            onClick={() => handleNavClick('mighty-network')}
+            className="btn btn-primary btn-sm"
+            style={{ width: '100%', justifyContent: 'center' }}
           >
-            {NAV_ITEMS.map((item) => {
-              const isActive = activeSection === item.id;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.id)}
-                  style={{
-                    background: isActive ? 'rgba(212, 175, 55, 0.15)' : 'rgba(255, 255, 255, 0.03)',
-                    border: isActive ? '1px solid var(--accent-gold)' : '1px solid rgba(255, 255, 255, 0.06)',
-                    color: isActive ? '#FFFFFF' : '#D1D5DB',
-                    padding: '16px 20px',
-                    borderRadius: '14px',
-                    fontSize: '1rem',
-                    fontWeight: 700,
-                    textAlign: 'left',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease',
-                    boxShadow: isActive ? '0 4px 20px rgba(212, 175, 55, 0.15)' : 'none'
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <span
-                      style={{
-                        width: '8px',
-                        height: '8px',
-                        borderRadius: '50%',
-                        background: isActive ? 'var(--accent-gold)' : 'rgba(255,255,255,0.2)'
-                      }}
-                    />
-                    <span>{item.label}</span>
-                  </div>
-
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    {item.badge && (
-                      <span
-                        style={{
-                          fontSize: '0.65rem',
-                          padding: '3px 8px',
-                          borderRadius: '6px',
-                          background: item.badge === 'PRO' ? 'rgba(212, 175, 55, 0.25)' : 'rgba(59, 130, 246, 0.25)',
-                          color: item.badge === 'PRO' ? 'var(--accent-gold-light)' : '#93C5FD',
-                          border: item.badge === 'PRO' ? '1px solid var(--border-gold)' : '1px solid rgba(59, 130, 246, 0.4)',
-                          fontWeight: 700
-                        }}
-                      >
-                        {item.badge}
-                      </span>
-                    )}
-                    <ChevronRight size={18} color={isActive ? 'var(--accent-gold)' : '#6B7280'} />
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Sticky Bottom Actions */}
-          <div
-            style={{
-              padding: '18px 16px',
-              borderTop: '1px solid var(--border-subtle)',
-              background: '#0D0F17',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '12px',
-              flexShrink: 0
-            }}
-          >
-            <button
-              onClick={() => {
-                onOpenModal('cpi-demo');
-                setMobileMenuOpen(false);
-              }}
-              className="btn btn-outline-gold btn-lg"
-              style={{ width: '100%', justifyContent: 'center' }}
-            >
-              <Activity size={18} />
-              <span>Explore CPI Platform</span>
-            </button>
-
-            <button
-              onClick={() => handleNavClick('mighty-network')}
-              className="btn btn-primary btn-lg"
-              style={{ width: '100%', justifyContent: 'center' }}
-            >
-              <span>Join Mighty Cricket Network</span>
-            </button>
-          </div>
-
-          {/* Mobile Drawer Animation */}
-          <style>{`
-            @keyframes mobileDrawerSlide {
-              from {
-                opacity: 0;
-                transform: translateY(-10px);
-              }
-              to {
-                opacity: 1;
-                transform: translateY(0);
-              }
-            }
-          `}</style>
+            <span>Join Mighty Cricket Network</span>
+          </button>
         </div>
-      )}
+      </div>
     </>
   );
 };
+
